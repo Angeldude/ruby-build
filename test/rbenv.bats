@@ -97,7 +97,7 @@ OUT
 }
 
 @test "no build definitions from plugins" {
-  assert [ ! -e "${RBENV_ROOT}/plugins" ]
+  refute [ -e "${RBENV_ROOT}/plugins" ]
   stub_ruby_build 'echo $RUBY_BUILD_DEFINITIONS'
 
   run rbenv-install 2.1.2
@@ -141,6 +141,13 @@ OUT
   run rbenv-install --complete
   assert_success
   assert_output <<OUT
+--list
+--force
+--skip-existing
+--keep
+--patch
+--verbose
+--version
 
 ${RBENV_ROOT}/plugins/bar/share/ruby-build
 ${RBENV_ROOT}/plugins/foo/share/ruby-build
